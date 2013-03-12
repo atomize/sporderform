@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Get started with jQuery dForm</title>
+</head>
+<body>
+
+<form id="demo-2-form"></form>
+<button onclick="addSpan();">Add Span</button>
+
+<dl>
+	<dt></dt>
+		<dd><input type="submit" /></dd>
+	</dl>
+</form>
+<dl>
+	<dt><label for="selector">Form selector</label></dt>
+	<dd><input id="selector" name="selector" value="#demo-2-form"></dd>
+	<dd><p>Try '#demo-2-form'</p></dd>
+</dl>
+
+<h2>mode: first</h2>
+<pre><code id="testAreaFirst">
+</code></pre>
+
+<h2>mode: all</h2>
+<pre><code id="testAreaAll">
+</code></pre>
+
+<h2>mode: combine</h2>
+<pre><code id="testAreaCombine">
+</code></pre>
+
+<!-- Load jQuery and the minified plugin -->
+<script type="text/javascript" src="src/jquery.min.js"></script>
+<script type="text/javascript" src="src/jquery.dform-1.0.1.min.js"></script>
+<script type="text/javascript" src="src/forms2.js" class="demo" id="demo-2"></script> 
+<script type="text/javascript" src="src/form2js.js"></script>
+<script type="text/javascript" src="src/jquery.toObject.js"></script>
+<script type="text/javascript" src="src/json2.js"></script>
+<script type="text/javascript">
+	(function($){
+
+		function test(evt){
+			evt.preventDefault();
+
+			var selector = $('#selector').val(),
+				formDataFirst = $(selector).toObject({mode: 'first'}),
+				formDataAll = $(selector).toObject({mode: 'all'}),
+				formDataCombine = $(selector).toObject({mode: 'combine'});
+
+			$('#testAreaFirst').html(JSON.stringify(formDataFirst, null, '\t'));
+			$('#testAreaAll').html(JSON.stringify(formDataAll, null, '\t'));
+			$('#testAreaCombine').html(JSON.stringify(formDataCombine, null, '\t'));
+		}
+
+		$(function(){
+			$('input[type=submit]').click(test);
+		});
+
+	})(jQuery);
+</script>
+
+
+</body>
+</html>
